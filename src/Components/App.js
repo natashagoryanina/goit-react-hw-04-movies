@@ -1,10 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 import Header from './header/Header';
-import Main from './main/Main';
 import HomePage from './pages/HomePage';
+import MovieDetailsPage from './pages/MovieDetailsPage';
 import MoviesPage from './pages/MoviesPage';
-
 
 const App = () => {
     return (
@@ -15,15 +14,18 @@ const App = () => {
                     <HomePage/>
                 </Route>
 
-                <Route path="/movies">
+                <Route path="/movies" exact>
                     <MoviesPage/>
+                </Route>
+
+                <Route path="/movies/:movieId">
+                    <MovieDetailsPage/>
                 </Route>
 
                 <Route>
                     <HomePage/>
                 </Route>
             </Switch>
-            <Main/>
         </>
     );
 };
