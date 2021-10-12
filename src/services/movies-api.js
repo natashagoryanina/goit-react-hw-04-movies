@@ -12,7 +12,7 @@ function fetchTrendingMovies() {
 };
 
 function fetchSearchMovie(movie) {
-    return fetch(`${BASE_URL}/search/${movie}${API_KEY}&language=en-US&page=1&include_adult=false`)
+    return fetch(`${BASE_URL}/search/movie${API_KEY}&language=en-US&query=${movie}&page=1&include_adult=false`)
     .then(result => {
             if(result.ok) {
                 return result.json()

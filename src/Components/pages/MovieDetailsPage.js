@@ -25,7 +25,6 @@ const MovieDetailsPage = () => {
     //     }
     // }, [movie]);
 
-
     return (
         <>
         {movie && 

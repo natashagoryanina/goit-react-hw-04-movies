@@ -22,6 +22,10 @@ const App = () => {
                     <MovieDetailsPage/>
                 </Route>
 
+                {/* <Route path="/movies?query=movieId">
+                    <MovieDetailsPage/>
+                </Route> */}
+
                 <Route>
                     <HomePage/>
                 </Route>
