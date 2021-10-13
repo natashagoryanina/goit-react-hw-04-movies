@@ -1,5 +1,5 @@
-import HomePage from '../Components/pages/HomePage';
-import MoviesPage from '../Components/pages/MoviesPage';
+import HomePage from '../Components/pages/home-page/HomePage';
+import MoviesPage from '../Components/pages/movies-page/MoviesPage';
 
 export const mainRoutes = [
     {

@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
+import SearchbarContainer from './SearchbarStyled';
 
 const Searchbar = ({onSubmit}) => {
     const [searchbar, setSearchbar] = useState('');
@@ -19,9 +21,9 @@ const Searchbar = ({onSubmit}) => {
     };
 
     return (
-        <form className="SearchForm" onSubmit={handleSubmit}>
+        <SearchbarContainer className="search-form" onSubmit={handleSubmit}>
             <input
-                className = "SearchForm-input"
+                className = "search-form_input"
                 type = "text"
                 autoComplete = "off"
                 autoFocus
@@ -30,11 +32,15 @@ const Searchbar = ({onSubmit}) => {
                 value = {searchbar}
                 onChange={handleNameChange}
             />
-            <button type="submit" className="SearchForm-button">
-                <span className="SearchForm-button-label">Search</span>
+            <button type="submit" className = "search-form_btn">
+                <span className = "search-form_btn-label">Search</span>
             </button>
-        </form>
+        </SearchbarContainer>
     );
+};
+
+Searchbar.propTypes = {
+    onSubmit: PropTypes.func,
 };
 
 export default Searchbar;

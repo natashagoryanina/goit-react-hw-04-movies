@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import apiService from '../../services/movies-api';
+import apiService from '../../../services/movies-api';
+import HomePageContainer from './HomePageStyled';
 
 const HomePage = () => {
     const location = useLocation();
@@ -15,12 +16,14 @@ const HomePage = () => {
     }, [])
 
     return (
-        <>
-            <h1>Trending today</h1>
+        <HomePageContainer>
+            <h1 className='home-page_heading'>Trending today</h1>
             <ul>
                 {trendingMovies && trendingMovies.map((movie)=> 
-                    <li key={movie.id}>
-                        <Link to={{ 
+                    <li key={movie.id} className='home-page_list'>
+                        <Link 
+                            className='home-page_link'
+                            to={{ 
                             pathname: `/movies/${movie.id}`,
                             state: {
                                 from: {
@@ -34,7 +37,7 @@ const HomePage = () => {
                     </li>
                 )}
             </ul>
-        </>
+        </HomePageContainer>
     );
 };
 

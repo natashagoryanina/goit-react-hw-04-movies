@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import Searchbar from '../searchbar/Searchbar';
-import apiService from '../../services/movies-api';
+import Searchbar from '../../searchbar/Searchbar';
+import apiService from '../../../services/movies-api';
 import { Link, useLocation } from 'react-router-dom';
+import MoviesPageContainer from './MoviesPageStyled';
 
 const MoviesPage = () => {
     const location = useLocation();
@@ -14,7 +15,7 @@ const MoviesPage = () => {
             apiService
                 .fetchSearchMovie(movie)
                 .then(data=> setMovies(data.results))
-                .catch(setError)
+                .catch(error => setError(error))
         }
     }, [movie])
     
@@ -23,27 +24,29 @@ const MoviesPage = () => {
     };
 
     return (
-        <>
+        <MoviesPageContainer>
             <Searchbar onSubmit={handleFormSubmit}/>
             <ul>
                 {movies && movies.map((movie) => 
-                    <li key={movie.id}>
-                        <Link to={{ 
-                                pathname: `/movies/${movie.id}`,
-                                state: {
-                                    from: {
-                                        location,
-                                        label: 'Back to movies search',
-                                    },
+                    <li key={movie.id} className='movies-page_list'>
+                        <Link 
+                            className='movies-page_link'
+                            to={{ 
+                            pathname: `/movies/${movie.id}`,
+                            state: {
+                                from: {
+                                    location,
+                                    label: 'Back to movies search',
                                 },
-                              }}
+                            },
+                        }}
                         >
                             {movie.title}
                         </Link>
                     </li>
                 )}
             </ul>
-       </>
+       </MoviesPageContainer>
     );
 };
 

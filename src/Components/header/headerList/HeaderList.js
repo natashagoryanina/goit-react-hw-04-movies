@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { mainRoutes } from '../../../routes/mainRoutes';
+import HeaderListContainer from './HeaderListStyled';
 
 const HeaderList = () => {
     return (
-        <nav>
+        <HeaderListContainer>
             <ul className='header-list'>
                 {mainRoutes.map((item)=> (
                     <li className='header-list_item' key={item.path}>
@@ -19,7 +20,7 @@ const HeaderList = () => {
                     </li>
                 ))}
             </ul>
-        </nav>
+        </HeaderListContainer>
     );
 };
 

@@ -1,11 +1,12 @@
 import React, {lazy, Suspense} from 'react';
 import Loader from 'react-loader-spinner';
+import HeaderContainer from './HeaderStyled';
 
 const HeaderList = lazy(() => import('./headerList/HeaderList' /* webpackChunkName: 'header-list' */));
 
 const Header = () => {
     return (
-        <header>
+        <HeaderContainer>
             <Suspense fallback={<Loader type="ThreeDots"
                                         color="#000000"
                                         height={70}
@@ -14,7 +15,7 @@ const Header = () => {
                                 />}>
                 <HeaderList/>
             </Suspense>
-        </header>
+        </HeaderContainer>
     );
 };
 
