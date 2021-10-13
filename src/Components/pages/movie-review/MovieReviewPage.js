@@ -32,7 +32,7 @@ const MovieReviewPage = ({movieId}) => {
 };
 
 MovieReviewPage.propTypes = {
-    movieId: PropTypes.number,
+    movieId: PropTypes.string,
 };
 
 export default MovieReviewPage;

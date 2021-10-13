@@ -7,14 +7,19 @@ import MoviesPageContainer from './MoviesPageStyled';
 const MoviesPage = () => {
     const location = useLocation();
     const [movie, setMovie] = useState('');
-    const [movies, setMovies] = useState(null);
-    const [error, setError] = useState(null);
+    const [movies, setMovies] = useState([]);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         if (movie) {
             apiService
                 .fetchSearchMovie(movie)
-                .then(data=> setMovies(data.results))
+                .then(data=> {
+                    if (data.results.length) {
+                        return setMovies(data.results);
+                    }
+                    setError(true);
+                })
                 .catch(error => setError(error))
         }
     }, [movie])
@@ -26,6 +31,7 @@ const MoviesPage = () => {
     return (
         <MoviesPageContainer>
             <Searchbar onSubmit={handleFormSubmit}/>
+            {error && <h2 className='error'>Can't find {movie} movie</h2>}
             <ul>
                 {movies && movies.map((movie) => 
                     <li key={movie.id} className='movies-page_list'>

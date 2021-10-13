@@ -26,6 +26,10 @@ const MoviesPageContainer = styled.div`
             }
         }
     }
+
+    .error {
+        color: #fff;
+    }
 `;
 
 export default MoviesPageContainer;

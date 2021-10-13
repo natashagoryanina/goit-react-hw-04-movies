@@ -10,6 +10,8 @@ const MovieReviewPage = lazy(() => import('../movie-review/MovieReviewPage' /* w
 
 const MovieDetailsPage = () => {
     const location = useLocation();
+    const goBack = location.state.from.location.pathname;
+    const goBackLabel = location.state.from.label;
     const {movieId} = useParams();
     const {url} = useRouteMatch();
     const [movie, setMovie] = useState({});
@@ -63,8 +65,8 @@ const MovieDetailsPage = () => {
                                 pathname:`${url}/cast`,
                                 state: {
                                     from: {
-                                        location: {pathname:`/`},
-                                        label: 'Back to home page',
+                                        location: {pathname: goBack},
+                                        label: goBackLabel,
                                     },
                                 },
                             }}
@@ -79,8 +81,8 @@ const MovieDetailsPage = () => {
                                 pathname:`${url}/reviews`,
                                 state: {
                                     from: {
-                                        location: {pathname:`/`},
-                                        label: 'Back to home page',
+                                        location: {pathname:goBack},
+                                        label: goBackLabel,
                                     },
                                 },
                             }}

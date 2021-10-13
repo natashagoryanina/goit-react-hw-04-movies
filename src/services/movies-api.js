@@ -19,12 +19,6 @@ function fetchSearchMovie(movie) {
             };
             return Promise.reject(new Error('Not Found'));
         })
-    .then((data) => {
-        if(data.results.length) {
-            return data;
-        };
-        throw new Error(`Cannot find ${movie} image`);
-    })
 };
 
 function fetchMovieDetails(movieId) {
