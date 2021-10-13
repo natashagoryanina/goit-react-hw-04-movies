@@ -11,7 +11,7 @@ const Searchbar = ({onSubmit}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(searchbar.trim() === '') {
-            toast.error('Enter an image tag, please.');
+            toast.error('Enter a movie title, please.');
             return;
         };
         onSubmit(searchbar);

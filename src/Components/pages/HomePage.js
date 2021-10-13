@@ -1,17 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import apiService from '../../services/movies-api';
 
 const HomePage = () => {
+    const location = useLocation();
     const [trendingMovies, setTrendingMovies] = useState(null);
-    const {url} = useRouteMatch();
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         apiService
         .fetchTrendingMovies()
-        .then(data => setTrendingMovies(data.results));
+        .then(data => setTrendingMovies(data.results))
+        .catch(setError);
     }, [])
-
 
     return (
         <>
@@ -19,7 +20,17 @@ const HomePage = () => {
             <ul>
                 {trendingMovies && trendingMovies.map((movie)=> 
                     <li key={movie.id}>
-                        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+                        <Link to={{ 
+                            pathname: `/movies/${movie.id}`,
+                            state: {
+                                from: {
+                                    location,
+                                    label: 'Back to home page',
+                                },
+                            },
+                        }}>
+                            {movie.title}
+                        </Link>
                     </li>
                 )}
             </ul>

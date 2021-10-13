@@ -1,19 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import {Route, useRouteMatch } from 'react-router';
 import Searchbar from '../searchbar/Searchbar';
 import apiService from '../../services/movies-api';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const MoviesPage = () => {
+    const location = useLocation();
     const [movie, setMovie] = useState('');
-    const [movies, setMovies] = useState(null)
-    const {url} = useRouteMatch();
+    const [movies, setMovies] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         if (movie) {
             apiService
                 .fetchSearchMovie(movie)
-                .then(data=> setMovies(data.results));
+                .then(data=> setMovies(data.results))
+                .catch(setError)
         }
     }, [movie])
     
@@ -27,7 +28,18 @@ const MoviesPage = () => {
             <ul>
                 {movies && movies.map((movie) => 
                     <li key={movie.id}>
-                        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+                        <Link to={{ 
+                                pathname: `/movies/${movie.id}`,
+                                state: {
+                                    from: {
+                                        location,
+                                        label: 'Back to movies search',
+                                    },
+                                },
+                              }}
+                        >
+                            {movie.title}
+                        </Link>
                     </li>
                 )}
             </ul>

@@ -1,14 +1,15 @@
 import React, {useState, useEffect}from 'react';
-import { Router } from 'react-router';
 import apiService from '../../services/movies-api';
 
 const MovieReviewPage = ({movieId}) => {
     const [reviews, setReviews] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         apiService
         .fetchMovieReviews(movieId)
-        .then(data => setReviews(data.results));
+        .then(data => setReviews(data.results))
+        .catch(setError);
     }, [movieId])
 
     return (
