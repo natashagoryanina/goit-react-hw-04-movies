@@ -2,11 +2,11 @@ import React, {useState, useEffect, lazy, Suspense} from 'react';
 import { Route, useHistory, useParams } from 'react-router';
 import { NavLink, useRouteMatch, useLocation } from 'react-router-dom';
 import Loader from "react-loader-spinner";
-import apiService from '../../../services/movies-api';
+import apiService from '../../services/movies-api';
 import MovieDetailsContainer from './MovieDetailsPageStyled';
 
-const MovieCastPage = lazy(() => import('../movie-cast/MovieCastPage' /* webpackChunkName: 'cast-page' */));
-const MovieReviewPage = lazy(() => import('../movie-review/MovieReviewPage' /* webpackChunkName: 'review-page' */));
+const MovieCastPage = lazy(() => import('../../Components/movie-cast/MovieCastPage' /* webpackChunkName: 'cast-page' */));
+const MovieReviewPage = lazy(() => import('../../Components/movie-review/MovieReviewPage' /* webpackChunkName: 'review-page' */));
 
 const MovieDetailsPage = () => {
     const location = useLocation();

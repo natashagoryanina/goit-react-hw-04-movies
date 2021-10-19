@@ -8,9 +8,9 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import GlobalStyles from '../styles/globalStyles';
 
 const Header = lazy(() => import('./header/Header' /* webpackChunkName: 'header' */));
-const HomePage = lazy(() => import('./pages/home-page/HomePage' /* webpackChunkName: 'home-page' */));
-const MovieDetailsPage = lazy(() => import('./pages/movie-details-page/MovieDetailsPage' /* webpackChunkName: 'movie-details-page' */));
-const MoviesPage = lazy(() => import('./pages/movies-page/MoviesPage' /* webpackChunkName: 'search-movie-page' */));
+const HomePage = lazy(() => import('../pages/home-page/HomePage' /* webpackChunkName: 'home-page' */));
+const MovieDetailsPage = lazy(() => import('../pages/movie-details-page/MovieDetailsPage' /* webpackChunkName: 'movie-details-page' */));
+const MoviesPage = lazy(() => import('../pages/movies-page/MoviesPage' /* webpackChunkName: 'search-movie-page' */));
 
 const App = () => {
     return (

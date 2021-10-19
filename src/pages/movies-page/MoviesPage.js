@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import Searchbar from '../../searchbar/Searchbar';
-import apiService from '../../../services/movies-api';
-import { Link, useLocation } from 'react-router-dom';
+import Searchbar from '../../Components/searchbar/Searchbar';
+import queryString from 'query-string';
+import apiService from '../../services/movies-api';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import MoviesPageContainer from './MoviesPageStyled';
+
 
 const MoviesPage = () => {
     const location = useLocation();
+    const history = useHistory();
     const [movie, setMovie] = useState('');
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(false);
@@ -16,17 +19,27 @@ const MoviesPage = () => {
                 .fetchSearchMovie(movie)
                 .then(data=> {
                     if (data.results.length) {
+                        history.push({...location, search: `?search=${movie}`})
                         return setMovies(data.results);
                     }
                     setError(true);
                 })
                 .catch(error => setError(error))
         }
-    }, [movie])
+    }, [movie]);
+
+    useEffect(() => {
+        if(location.search) {
+            const movieObj = queryString.parse(location.search);
+            setMovie(movieObj.search);
+        }
+    }, []);
     
     const handleFormSubmit = (movieTag) => {
         setMovie(movieTag);
     };
+
+
 
     return (
         <MoviesPageContainer>

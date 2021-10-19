@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import apiService from '../../../services/movies-api';
+import apiService from '../../services/movies-api';
 import HomePageContainer from './HomePageStyled';
 
 const HomePage = () => {

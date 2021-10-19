@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import apiService from '../../../services/movies-api';
+import apiService from '../../services/movies-api';
 import MovieCastContainer from './MovieCastStyled';
 
 const MovieCastPage = ({movieId}) => {
