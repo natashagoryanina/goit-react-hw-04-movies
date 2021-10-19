@@ -12,6 +12,7 @@ const MovieDetailsPage = () => {
     const location = useLocation();
     const goBack = location.state.from.location.pathname;
     const goBackLabel = location.state.from.label;
+    const goBackSearch = location.state.from.location.search;
     const {movieId} = useParams();
     const {url} = useRouteMatch();
     const [movie, setMovie] = useState({});
@@ -65,7 +66,7 @@ const MovieDetailsPage = () => {
                                 pathname:`${url}/cast`,
                                 state: {
                                     from: {
-                                        location: {pathname: goBack},
+                                        location: {pathname: goBack, search: goBackSearch},
                                         label: goBackLabel,
                                     },
                                 },
@@ -81,7 +82,7 @@ const MovieDetailsPage = () => {
                                 pathname:`${url}/reviews`,
                                 state: {
                                     from: {
-                                        location: {pathname:goBack},
+                                        location: {pathname:goBack, search: goBackSearch},
                                         label: goBackLabel,
                                     },
                                 },

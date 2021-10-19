@@ -39,8 +39,6 @@ const MoviesPage = () => {
         setMovie(movieTag);
     };
 
-
-
     return (
         <MoviesPageContainer>
             <Searchbar onSubmit={handleFormSubmit}/>
